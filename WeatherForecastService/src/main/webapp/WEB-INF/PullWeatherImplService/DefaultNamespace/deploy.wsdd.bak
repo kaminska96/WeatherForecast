@@ -1,0 +1,27 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<wsdd:deployment xmlns:DefaultNamespace="http://DefaultNamespace"
+    xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java"
+    xmlns:wsdd="http://xml.apache.org/axis/wsdd/">
+  <wsdd:service name="PullWeatherImpl" provider="java:RPC" use="literal" style="wrapped">
+    <wsdd:parameter name="wsdlTargetNamespace" value="http://DefaultNamespace"/>
+    <wsdd:parameter name="wsdlServiceElement" value="PullWeatherImplService"/>
+    <wsdd:parameter name="schemaQualified" value="http://DefaultNamespace"/>
+    <wsdd:parameter name="wsdlServicePort" value="PullWeatherImpl"/>
+    <wsdd:parameter name="className" value="DefaultNamespace.PullWeatherImplSoapBindingImpl"/>
+    <wsdd:parameter name="wsdlPortType" value="PullWeatherImpl"/>
+    <wsdd:parameter name="typeMappingVersion" value="1.2"/>
+    <wsdd:parameter name="allowedMethods" value="pullWeather"/>
+    <wsdd:operation name="pullWeather" qname="DefaultNamespace:pullWeather" returnQName="DefaultNamespace:pullWeatherReturn"
+        returnType="XMLSchema:string" soapAction="">
+      <wsdd:parameter qname="DefaultNamespace:city" type="XMLSchema:string"/>
+      <wsdd:parameter qname="DefaultNamespace:country" type="XMLSchema:string"/>
+    </wsdd:operation>
+  </wsdd:service>
+</wsdd:deployment>
