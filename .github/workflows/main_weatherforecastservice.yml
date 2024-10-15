@@ -23,7 +23,7 @@ jobs:
           distribution: 'adopt'
 
       - name: Build with Maven
-        run: mvn clean install
+        run: mvn clean install -f WeatherForecastService/pom.xml
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
